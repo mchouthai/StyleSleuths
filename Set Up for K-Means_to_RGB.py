@@ -96,3 +96,5 @@ def runKMeans(K,fileString):
             break
 
     plotCurrent(X, Rnk, Kmus)
+
+test = open("Andy_Warhol_10.jpg")
