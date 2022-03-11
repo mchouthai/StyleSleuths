@@ -31,19 +31,19 @@ def sum_imgs(edges=False):
         rgb_sums[i] = np.sum(rgb_arr[i], (0, 1)) / gray_sums[i]
         if(edges):
             edge_sums[i] = np.sum(
-                convolve(gray_arr[i], sobelX, sobelY), (0, 1))
+                convolve(gray_arr[i], robertsX, robertsY, threshold=70), (0, 1))
         print("Processing img " + str(i))
     return rgb_sums, gray_sums, edge_sums
 
 
-def convolve(image, kernel, kernelY=None, threshold=150):
+def convolve(image, kernel, kernelY=None, threshold=60):
 
     imgY = image.shape[0]
     imgX = image.shape[1]
 
     kSize = kernel.shape[0]
 
-    image_padded = np.zeros((imgY + kSize, imgX + kSize), dtype="int8")
+    image_padded = np.zeros((imgY + kSize, imgX + kSize), dtype="int32")
     image_padded[0:imgY, 0:imgX] = image
     out = np.zeros((imgY, imgX))
 
