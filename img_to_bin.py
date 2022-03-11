@@ -9,22 +9,18 @@ rootdir = sys.argv[1]
 k = 0
 
 for imgdir in os.listdir("./" + rootdir):
-    k += 1 
+    k += 1
 
-rgb_arr = np.zeros([k, 256, 256, 3], dtype="int8")
-gray_arr = np.zeros([k, 256, 256], dtype="int8")
+rgb_arr = np.zeros([k, 256, 256, 3], dtype="int32")
+gray_arr = np.zeros([k, 256, 256], dtype="int32")
 
 k = 0
 for imgdir in os.listdir("./" + rootdir):
     img = Image.open("./" + rootdir + "/" + imgdir)
-    data = np.asarray(img.convert('RGB'))
+    data = np.asarray(img.convert('RGB'), dtype="int32")
     rgb_arr[k] = data
-    gray_arr[k] = np.asarray(img.convert('L'))
+    gray_arr[k] = np.asarray(img.convert('L'), dtype="int32")
     k += 1
 
-np.save(rootdir + "_rgb" , rgb_arr)
-np.save(rootdir + "_gray" , gray_arr)
-
-
-
-
+np.save(rootdir + "_rgb", rgb_arr)
+np.save(rootdir + "_gray", gray_arr)
