@@ -17,9 +17,9 @@ gray_arr = np.zeros([k, 256, 256], dtype="int32")
 k = 0
 for imgdir in os.listdir("./" + rootdir):
     img = Image.open("./" + rootdir + "/" + imgdir)
-    data = np.asarray(img.convert('RGB'))
+    data = np.asarray(img.convert('RGB'), dtype="int32")
     rgb_arr[k] = data
-    gray_arr[k] = np.asarray(img.convert('L'))
+    gray_arr[k] = np.asarray(img.convert('L'), dtype="int32")
     k += 1
 
 np.save(rootdir + "_rgb", rgb_arr)
